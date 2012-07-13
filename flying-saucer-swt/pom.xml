@@ -89,7 +89,7 @@
           <type>jar</type>
           <scope>system</scope>
           <systemPath>${basedir}/lib/swt/swt-3.6-osx.jar</systemPath>
-          <optional>true</optional>
+          <!-- <optional>true</optional> -->
         </dependency>
       </dependencies>
     </profile>

@@ -1,0 +1,121 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.xhtmlrenderer</groupId>
+    <artifactId>flying-saucer-parent</artifactId>
+    <version>9.0.1-SNAPSHOT</version>
+  </parent>
+
+	<artifactId>flying-saucer-demos</artifactId>
+
+	<name>Flying Saucer Demos</name>
+
+	<dependencies>
+		<dependency>
+	    <groupId>${project.groupId}</groupId>
+	    <artifactId>flying-saucer-core</artifactId>
+	    <version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+	    <groupId>${project.groupId}</groupId>
+	    <artifactId>flying-saucer-pdf</artifactId>
+	    <version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+	    <groupId>${project.groupId}</groupId>
+	    <artifactId>flying-saucer-swt</artifactId>
+	    <version>${project.version}</version>
+		</dependency>
+
+    <dependency>
+      <groupId>svg-salamander</groupId>
+      <artifactId>svg-salamander</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/svgSalamander.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>pdf-renderer</groupId>
+      <artifactId>pdf-renderer</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/PDFRenderer.jar</systemPath>
+    </dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>browser/src/java</sourceDirectory>
+
+		<resources>
+			<resource>
+				<directory>browser/resources</directory>
+			</resource>
+
+			<resource>
+				<directory>about/resources</directory>
+			</resource>
+
+			<resource>
+				<directory>docbook/resources</directory>
+			</resource>
+
+			<resource>
+				<directory>svg/resources</directory>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+
+					<executions>
+						<execution>
+							<phase>generate-sources</phase>
+								<goals>
+									<goal>add-source</goal>
+								</goals>
+
+								<configuration>
+									<sources>
+										<source>about/src/java</source>
+										<source>docbook/src/java</source>
+										<source>svg/src/java</source>
+									</sources>
+								</configuration>
+							</execution>
+					</executions>
+			</plugin>
+
+			<plugin>
+	      <artifactId>maven-assembly-plugin</artifactId>
+
+	      <configuration>
+	        <descriptorRefs>
+	          <descriptorRef>jar-with-dependencies</descriptorRef>
+	        </descriptorRefs>
+
+	        <archive>
+	          <manifest>
+	            <mainClass>org.xhtmlrenderer.demo.browser.BrowserStartup</mainClass>
+	          </manifest>
+	        </archive>
+	      </configuration>
+
+	      <executions>
+	        <execution>
+	          <phase>package</phase>
+
+	          <goals>
+	            <goal>single</goal>
+	          </goals>
+	        </execution>
+	      </executions>
+	    </plugin>
+		</plugins>
+	</build>
+</project>

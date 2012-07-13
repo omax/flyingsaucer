@@ -32,6 +32,7 @@
     <module>flying-saucer-pdf</module>
     <module>flying-saucer-log4j</module>
     <module>flying-saucer-swt</module>
+    <module>flying-saucer-demos</module>
   </modules>
 
   <scm>
@@ -87,6 +88,9 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+        	<skip>${javadoc.skip}</skip>
+        </configuration>
       </plugin>
     </plugins>
   </build>
