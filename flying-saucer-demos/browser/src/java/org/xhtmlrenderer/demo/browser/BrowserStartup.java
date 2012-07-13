@@ -138,8 +138,13 @@ public class BrowserStartup {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 final BrowserStartup bs = new BrowserStartup();
+
                 bs.initUI();
-                bs.launch();
+                bs.launch(args.length > 0 ? args[0] : null);
+
+                if (args.length > 1) {
+                  bs.actions.exportToPdf(args[1]);
+                }
             }
         });
     }
@@ -147,9 +152,11 @@ public class BrowserStartup {
     /**
      * Loads the first page (specified in the constructor) and shows the frame.
      */
-    public void launch() {
+    public void launch(String startPage) {
         try {
-            panel.loadPage(startPage);
+        	if (startPage != null) {
+        		panel.loadPage(startPage);
+        	}
 
             frame.setVisible(true);
         } catch (Exception ex) {

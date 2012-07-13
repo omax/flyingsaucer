@@ -17,6 +17,6 @@ public class BrowserSandboxLauncher {
         bs.panel.goToPage.setVisible(false);
         bs.actions.open_file.setEnabled(false);
 
-        bs.launch();
+        bs.launch(null);
     }
 }
